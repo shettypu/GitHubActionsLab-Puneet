@@ -1,0 +1,52 @@
+name: Multi-Platform Testing
+
+# Trigger when a pull request targets the main branch
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ubuntu-job:
+    name: Ubuntu Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print OS information
+        run: uname -a
+
+      - name: Create and read file
+        run: |
+          echo "Hello from Ubuntu!" > ubuntu.txt
+          cat ubuntu.txt
+
+  windows-job:
+    name: Windows Job
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print OS information
+        run: systeminfo
+
+      - name: Create and read file
+        run: |
+          echo Hello from Windows! > windows.txt
+          type windows.txt
+
+  macos-job:
+    name: macOS Job
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print OS information
+        run: uname -a
+
+      - name: Create and read file
+        run: |
+          echo "Hello from macOS!" > macos.txt
+          cat macos.txt
